@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 320px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      margin: 0;
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    h1 {
+      font-size: 16px;
+      margin: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      background: #252542;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #6b7280;
+    }
+    
+    .status-dot.connected {
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+    
+    .status-dot.connecting {
+      background: #eab308;
+      animation: pulse 1s infinite;
+    }
+    
+    .status-dot.error {
+      background: #ef4444;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .field {
+      margin-bottom: 12px;
+    }
+    
+    label {
+      display: block;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      background: #252542;
+      border: 1px solid #3f3f5a;
+      border-radius: 6px;
+      color: #e0e0e0;
+      font-size: 13px;
+    }
+    
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    
+    button {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    button.primary {
+      background: #6366f1;
+      color: white;
+    }
+    
+    button.primary:hover {
+      background: #4f46e5;
+    }
+    
+    button.secondary {
+      background: #3f3f5a;
+      color: #e0e0e0;
+    }
+    
+    button.secondary:hover {
+      background: #4f4f6a;
+    }
+    
+    .info {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #3f3f5a;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <span>🌉</span>
+    Telegram → Claude Bridge
+  </h1>
+  
+  <div class="status">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Checking...</span>
+  </div>
+  
+  <div class="field">
+    <label>Bridge Server URL</label>
+    <input type="text" id="serverUrl" placeholder="ws://localhost:8765/ws">
+  </div>
+  
+  <div class="buttons">
+    <button class="secondary" id="reconnectBtn">Reconnect</button>
+    <button class="primary" id="saveBtn">Save</button>
+  </div>
+  
+  <div class="info">
+    Open <a href="https://claude.ai" target="_blank" style="color: #818cf8">claude.ai</a> 
+    to receive messages from your Telegram group.
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
